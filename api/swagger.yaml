@@ -1,0 +1,858 @@
+---
+swagger: "2.0"
+info:
+  description: "Template management"
+  version: "v1"
+  title: "Template management"
+host: "virtserver.swaggerhub.com"
+basePath: "/olya/master_thesis/v1"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+- "application/xml"
+paths:
+  /actionTemplate:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get action template or a list of action templates"
+      description: ""
+      operationId: "actionTemplateGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "stepTemplateID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "processTemplateID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates new acton template or udates existing"
+      description: ""
+      operationId: "actionTemplatePOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "actionTemplateJson"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_1"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /calculateFitness:
+    post:
+      tags:
+      - "Process analysis subsystem"
+      summary: "Calculates fitness between process template model and a set of workflow\
+        \ instances which belong to one process template"
+      description: ""
+      operationId: "calculateFitnessPOST"
+      parameters:
+      - name: "processModelID"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "Fitness between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_2"
+      x-swagger-router-controller: "ProcessAnalysisSubsystem"
+  /calculateSimilarity:
+    post:
+      tags:
+      - "Process analysis subsystem"
+      summary: "Calculates similarity of two process modele, which belong to two different\
+        \ process templates and updates the value in the storage"
+      description: ""
+      operationId: "calculateSimilarityPOST"
+      parameters:
+      - name: "processTemplateID_1"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID_2"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "Similarity between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_3"
+      x-swagger-router-controller: "ProcessAnalysisSubsystem"
+  /cluster:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get a cluster by ID or a list of clusters"
+      description: ""
+      operationId: "clusterGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/inline_response_200_4"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates or updates the cluster information"
+      description: ""
+      operationId: "clusterPOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "clusterJson"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/inline_response_200_5"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /domain:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get domain or list of domains"
+      description: ""
+      operationId: "domainGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "userID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_6"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates or updates the domain information"
+      description: ""
+      operationId: "domainPOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "domain"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_7"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /fitness:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get fitness between process template model and a set of workflow instances\
+        \ which belong to one process template"
+      description: ""
+      operationId: "fitnessGET"
+      parameters:
+      - name: "processModelID"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "Fitness between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_8"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Set or update fitness between process template model and a set of\
+        \ workflow instances which belong to one process template"
+      description: ""
+      operationId: "fitnessPOST"
+      parameters:
+      - name: "processModelID"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "Fitness between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_2"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /init:
+    post:
+      tags:
+      - "Reccomendation subsystem"
+      summary: "Initialization of recommendation session"
+      description: ""
+      operationId: "initPOST"
+      parameters:
+      - name: "domainID"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "userID"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_9"
+      x-swagger-router-controller: "ReccomendationSubsystem"
+  /merge:
+    post:
+      tags:
+      - "Template management subsystem"
+      summary: "Merge two templates of one type into one or two models"
+      description: ""
+      operationId: "mergePOST"
+      parameters:
+      - name: "type"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "objectID_1"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "objectID_2"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_10"
+      x-swagger-router-controller: "TemplateManagementSubsystem"
+  /mergeReccomendation:
+    post:
+      tags:
+      - "Template management subsystem"
+      summary: "Suggestion to merge templates or models"
+      description: ""
+      operationId: "mergeReccomendationPOST"
+      parameters:
+      - name: "domainID"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_11"
+      x-swagger-router-controller: "TemplateManagementSubsystem"
+  /processModel:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get process model from the process template description"
+      description: ""
+      operationId: "processModelGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_12"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates or updates process model from the process template description"
+      description: ""
+      operationId: "processModelPOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_13"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /processTemplate:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get process template by ID or array of process templates available\
+        \ for particular user"
+      description: ""
+      operationId: "processTemplateGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "userID"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_14"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates new process template or udates existing by ID"
+      description: ""
+      operationId: "processTemplatePOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "processTemplateJson"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_15"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /recommend:
+    get:
+      tags:
+      - "Reccomendation subsystem"
+      summary: "Creates recommendation for future steps"
+      description: ""
+      operationId: "recommendGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "domainID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "userID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "stepTemplates"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_16"
+      x-swagger-router-controller: "ReccomendationSubsystem"
+  /similarity:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get similarity measure (list) of two process models, which belong\
+        \ to two different process templates"
+      description: ""
+      operationId: "similarityGET"
+      parameters:
+      - name: "processTemplateID_1"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID_2"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "Similarity between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_17"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Set or update similarity of two process modele, which belong to two\
+        \ different process templates and updates the value in the storage"
+      description: ""
+      operationId: "similarityPOST"
+      parameters:
+      - name: "processTemplateID_1"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "processTemplateID_2"
+        in: "query"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "Similarity between templates"
+          schema:
+            $ref: "#/definitions/inline_response_200_3"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /stepTemplate:
+    get:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Get step template or a list of step templates"
+      description: ""
+      operationId: "stepTemplateGET"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "processTemplateID"
+        in: "query"
+        required: false
+        type: "number"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_18"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+    post:
+      tags:
+      - "Data acsess subsystem"
+      summary: "Creates new step template or udates existing"
+      description: ""
+      operationId: "stepTemplatePOST"
+      parameters:
+      - name: "ID"
+        in: "query"
+        required: false
+        type: "number"
+      - name: "stepTemplateJson"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200_19"
+      x-swagger-router-controller: "DataAcsessSubsystem"
+  /updateCluster:
+    post:
+      tags:
+      - "Process analysis subsystem"
+      summary: "Updetes the cluster of the process templates for the given set of\
+        \ templates"
+      description: ""
+      operationId: "updateClusterPOST"
+      parameters:
+      - name: "processTemplateJson"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/inline_response_200_14"
+      x-swagger-router-controller: "ProcessAnalysisSubsystem"
+definitions:
+  processTemplate:
+    properties:
+      ID:
+        type: "number"
+      title:
+        type: "string"
+      domainID:
+        type: "number"
+      clusterID:
+        type: "number"
+      stepTemplates:
+        $ref: "#/definitions/stepTemplate/properties/ID"
+      processModelID:
+        $ref: "#/definitions/processModel/properties/ID"
+      workflowInstancesID:
+        type: "array"
+        items:
+          $ref: "#/definitions/workflowInstance/properties/ID"
+      alternativeID:
+        type: "array"
+        items:
+          type: "number"
+      userID:
+        type: "array"
+        items:
+          $ref: "#/definitions/user/properties/ID"
+  actionTemplate:
+    properties:
+      ID:
+        type: "number"
+      title:
+        type: "string"
+      alternativeTitle:
+        type: "array"
+        items:
+          type: "string"
+      type:
+        type: "string"
+      required:
+        type: "boolean"
+      validation:
+        type: "string"
+      alternativeID:
+        type: "array"
+        items:
+          type: "number"
+  stepTemplate:
+    properties:
+      ID:
+        type: "number"
+      actions:
+        $ref: "#/definitions/actionTemplate/properties/ID"
+      assignTo:
+        $ref: "#/definitions/user/properties/ID"
+      blockedBy:
+        $ref: "#/definitions/stepTemplate/properties/ID"
+      alternativeID:
+        type: "array"
+        items:
+          type: "number"
+  workflowInstance:
+    properties:
+      ID:
+        type: "number"
+      templateID:
+        type: "number"
+      eventsID:
+        type: "array"
+        items:
+          $ref: "#/definitions/event/properties/ID"
+  processModel:
+    properties:
+      ID:
+        type: "number"
+      model:
+        type: "string"
+      alternativeID:
+        type: "array"
+        items:
+          type: "number"
+  event:
+    properties:
+      ID:
+        type: "number"
+      workflowInstanceID:
+        type: "number"
+      actionTemplateID:
+        $ref: "#/definitions/actionTemplate/properties/ID"
+      userID:
+        $ref: "#/definitions/user/properties/ID"
+      timestamp:
+        type: "number"
+  user:
+    properties:
+      ID:
+        type: "number"
+      fullName:
+        type: "string"
+      department:
+        type: "string"
+      role:
+        type: "string"
+  status:
+    properties:
+      code:
+        type: "number"
+      message:
+        type: "string"
+  domain:
+    properties:
+      ID:
+        type: "number"
+      domain:
+        type: "string"
+      referenceTemplate:
+        $ref: "#/definitions/processTemplate/properties/ID"
+  cluster:
+    properties:
+      ID:
+        type: "number"
+      domain:
+        $ref: "#/definitions/domain/properties/ID"
+      user:
+        $ref: "#/definitions/user/properties/ID"
+      role:
+        type: "string"
+      department:
+        type: "string"
+      referenceTemplate:
+        $ref: "#/definitions/processTemplate/properties/ID"
+  inline_response_200:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/actionTemplate"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_1:
+    properties:
+      data:
+        $ref: "#/definitions/actionTemplate"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_2_data:
+    properties:
+      processTemplateID:
+        type: "number"
+      processModelID:
+        type: "number"
+      conformance:
+        type: "number"
+  inline_response_200_2:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_2_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_3_data:
+    properties:
+      similarity:
+        type: "number"
+      processTemplateID_2:
+        type: "number"
+      processTemplateID_1:
+        type: "number"
+  inline_response_200_3:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_3_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_4:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/cluster"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_5:
+    properties:
+      data:
+        $ref: "#/definitions/cluster"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_6:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/domain"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_7:
+    properties:
+      data:
+        $ref: "#/definitions/domain"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_8:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/inline_response_200_2_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_9:
+    properties:
+      data:
+        type: "number"
+        title: "processTemplateID"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_10_data:
+    properties:
+      models:
+        $ref: "#/definitions/processModel"
+      processTemplate:
+        $ref: "#/definitions/processTemplate"
+      stepTemplates:
+        $ref: "#/definitions/stepTemplate"
+      actionTemplates:
+        $ref: "#/definitions/actionTemplate"
+  inline_response_200_10:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_10_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_11_data:
+    properties:
+      processTemplates:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            $ref: "#/definitions/processTemplate"
+      stepTemplates:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            $ref: "#/definitions/stepTemplate"
+      processModels:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            $ref: "#/definitions/processModel"
+      actionTemplates:
+        type: "array"
+        items:
+          type: "array"
+          items:
+            $ref: "#/definitions/actionTemplate"
+  inline_response_200_11:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_11_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_12:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/processModel"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_13_data:
+    properties:
+      processTemplate:
+        $ref: "#/definitions/processTemplate"
+      processModel:
+        $ref: "#/definitions/processModel"
+  inline_response_200_13:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_13_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_14:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/processTemplate"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_15:
+    properties:
+      data:
+        $ref: "#/definitions/processTemplate"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_16_data:
+    properties:
+      processTemplates:
+        type: "array"
+        items:
+          $ref: "#/definitions/processTemplate"
+      stepTemplates:
+        type: "array"
+        items:
+          $ref: "#/definitions/stepTemplate"
+      actionTemplates:
+        type: "array"
+        items:
+          $ref: "#/definitions/actionTemplate"
+  inline_response_200_16:
+    properties:
+      data:
+        $ref: "#/definitions/inline_response_200_16_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_17:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/inline_response_200_3_data"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_18:
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/stepTemplate"
+      status:
+        $ref: "#/definitions/status"
+  inline_response_200_19:
+    properties:
+      data:
+        $ref: "#/definitions/stepTemplate"
+      status:
+        $ref: "#/definitions/status"
