@@ -18,6 +18,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var project = require('./routes/project');
 var domains = require('./routes/domains');
+var formProcess = require('./routes/processHandler');
 
 var app = express();
 
@@ -56,6 +57,7 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/projects', project);
 app.use('/domains', domains);
+app.use('/process', formProcess);
 
 // app.use('/', function(req, res) {
 //   res.redirect('/login');

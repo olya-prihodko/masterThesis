@@ -47,7 +47,7 @@ const ActionStep = React.createClass({
   getInitialState() {
     return {
       actions: [{
-        id: 12,
+        id: Date.now(),
         canDelete: false,
         value: "",
         type: "",
@@ -55,6 +55,29 @@ const ActionStep = React.createClass({
         required: false
       }]
     }
+  },
+
+  resetState() {
+    this.setState({
+      actions: [{
+        id: Date.now(),
+        canDelete: false,
+        value: "",
+        type: "",
+        validations: false,
+        required: false
+      }]
+    });
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reset) {
+      this.resetState();
+    }
+  },
+
+  sendState() {
+    this.props.sendState(this.state);
   },
 
   addAction() {
@@ -69,6 +92,8 @@ const ActionStep = React.createClass({
     });
     this.setState({
       actions: state.actions
+    }, () => {
+      this.sendState();
     });
   },
 
@@ -80,7 +105,9 @@ const ActionStep = React.createClass({
       return item.id !== id;
     });
 
-    this.setState({actions: state.actions});
+    this.setState({actions: state.actions},() => {
+      this.sendState();
+    });
 
   },
 
@@ -95,6 +122,8 @@ const ActionStep = React.createClass({
 
     this.setState({
       actions: state.actions
+    }, () => {
+      this.sendState();
     });
 
   },
@@ -110,6 +139,8 @@ const ActionStep = React.createClass({
 
     this.setState({
       actions: state.actions
+    }, () => {
+      this.sendState();
     });
   },
 
@@ -124,6 +155,8 @@ const ActionStep = React.createClass({
 
     this.setState({
       actions: state.actions
+    }, () => {
+      this.sendState();
     });
 
   },

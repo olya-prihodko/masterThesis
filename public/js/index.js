@@ -1,7 +1,6 @@
 import {render} from 'react-dom';
 import React from 'react';
-import Step from './components/Step';
+import Modal from './components/Modal';
 
 
-
-render(<Step />, document.getElementById('step'));
+render(<Modal />, document.getElementById('custom-modal'));
